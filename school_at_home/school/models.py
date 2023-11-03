@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class school(models.Model):
     School_Name = models.CharField(max_length=50, help_text='School Name')
@@ -8,6 +9,9 @@ class school(models.Model):
 
     def __str__(self):
         return self.School_Name
+    
+    def get_absolute_url(self):
+        return reverse('school-detail-view', args=[str(self.id)])
 
 class ClassName(models.Model):
     ClassName = models.CharField(max_length=20, help_text='Class Name')
@@ -15,6 +19,9 @@ class ClassName(models.Model):
 
     def __str__(self):
         return self.ClassName
+    
+    def get_absolute_url (self):
+        return reverse('class-detail', args=[str(self.id)])
     
 class student(models.Model):
     Student_First_Name = models.CharField(max_length=20, help_text='First Name')
